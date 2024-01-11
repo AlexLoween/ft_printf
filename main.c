@@ -6,11 +6,34 @@
 /*   By: alexlowen <alexlowen@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:32:45 by alexlowen         #+#    #+#             */
-/*   Updated: 2024/01/11 19:11:31 by alexlowen        ###   ########.fr       */
+/*   Updated: 2024/01/11 19:45:23 by alexlowen        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int ft_conversion(char *param, va_list argunment, int len)
+{
+    if(*param == 'c')
+        ft_putchar(va_arg(argunment, int), &len);
+    else if(*param == 's')
+    ;//TODO
+    else if (*param == 'p')
+    ;    //TODO
+    else if(*param == 'i' || *param == 'd')
+    ;    //TODO
+    else if(*param == 'x')
+    ;    //TODO
+    else if (*param == 'X')
+    ;    //TODO
+    else if (*param == 'u')
+    ;    //TODO
+    else if (*param == '%')
+    ;    //TODO
+    else 
+        return (1);
+    return(len);        
+}
 
 int ft_printf(char const *param, ...)
 {
@@ -25,6 +48,7 @@ int ft_printf(char const *param, ...)
         if(*param == '%')
         {
             param++;
+            len += ft_conversion(param,argument,&len);
         }
         else
             len += write(1,param, 1);
@@ -34,8 +58,9 @@ int ft_printf(char const *param, ...)
     return(len);
 }
 
-int main ()
+
+int main()
 {
-    printf( "hello world/n");
-    ft_printf("hello worrd");
+    printf( "%c", 'h');
+    ft_printf("%c", 'h');
 }

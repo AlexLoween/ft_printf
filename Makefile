@@ -1,5 +1,5 @@
-SRC = main.c
-
+SRC = main.c \
+		utils.c
 OBJS = $(SRC:.c=.o)
 
 CC = gcc

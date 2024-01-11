@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexlowen <alexlowen@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 18:33:41 by alexlowen         #+#    #+#             */
-/*   Updated: 2024/01/11 19:40:49 by alexlowen        ###   ########.fr       */
+/*   Created: 2024/01/11 19:36:57 by alexlowen         #+#    #+#             */
+/*   Updated: 2024/01/11 19:39:53 by alexlowen        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-#include <stdio.h>  //para utilizar printf
-#include <unistd.h> // para utilizar el write
-#include <stdarg.h> //para las funciones variadicas
-
-void ft_putchar(int c, int *len);
-
-#endif
+void ft_putchar(int c, int *len)
+{
+    *len += write(1,&c, 1);  
+}
