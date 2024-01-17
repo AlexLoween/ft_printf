@@ -17,6 +17,7 @@
 #include <unistd.h> // para utilizar el write
 #include <stdarg.h> //para las funciones variadicas
 
-void ft_putchar(int c, int *len);
+int ft_putchar(int c);
+int ft_putstr(char *s);
 
 #endif

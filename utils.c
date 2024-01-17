@@ -12,7 +12,26 @@
 
 #include "ft_printf.h"
 
-void ft_putchar(int c, int *len)
+int ft_putchar(int c)
 {
-    *len += write(1,&c, 1);  
+    int len;
+
+    len = 0;
+    len += write(1,&c, 1);
+    return(len);
 }
+int ft_putstr(char *s)
+{
+    int len;
+    int i;
+
+    len = 0;
+    i = 0;
+    while(s[i])
+    {
+        len +=ft_putchar(s[i]);
+        i++;
+    }
+    return(len);
+}
+

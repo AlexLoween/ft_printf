@@ -12,47 +12,46 @@
 
 #include "ft_printf.h"
 
-int ft_conversion(char *param, va_list argunment, int len)
+int ft_conversion(char c, va_list argument)
 {
-    if(*param == 'c')
-        ft_putchar(va_arg(argunment, int), &len);
-    else if(*param == 's')
-    ;//TODO
-    else if (*param == 'p')
+    if(c == 'c')
+        return(ft_putchar(va_arg(argument, int)));
+    else if(c == 's')
+        return(ft_putstr(va_arg(argument, char *)));
+    else if (c == 'p')
     ;    //TODO
-    else if(*param == 'i' || *param == 'd')
+    else if(c == 'i' || c == 'd')
     ;    //TODO
-    else if(*param == 'x')
+    else if(c == 'x')
     ;    //TODO
-    else if (*param == 'X')
+    else if (c == 'X')
     ;    //TODO
-    else if (*param == 'u')
+    else if (c == 'u')
     ;    //TODO
-    else if (*param == '%')
-    ;    //TODO
-    else 
-        return (1);
-    return(len);        
+    else if (c == '%')
+       return (write(1,"%%",1));   
+    return (0);      
 }
 
 int ft_printf(char const *param, ...)
 {
     int len;
+    int p;
     va_list argument;
     
     va_start(argument, param);
     len = 0;
-
-    while(*param)
+    p = 0;
+    while(param[p])
     {
-        if(*param == '%')
+        if(param[p] == '%')
         {
-            param++;
-            len += ft_conversion(param,argument,&len);
+            len += ft_conversion(param[p+1],argument);
+            p++;
         }
         else
-            len += write(1,param, 1);
-        param++;     
+            len += write(1,&param[p], 1);
+        p++;     
     }
     va_end(argument);
     return(len);
@@ -61,6 +60,8 @@ int ft_printf(char const *param, ...)
 
 int main()
 {
-    printf( "%c", 'h');
-    ft_printf("%c", 'h');
+    printf( "%s", "hola");
+    ft_printf("%s", "hola");
+
+
 }
