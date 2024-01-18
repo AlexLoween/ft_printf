@@ -6,7 +6,7 @@
 /*   By: alexlowen <alexlowen@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:33:41 by alexlowen         #+#    #+#             */
-/*   Updated: 2024/01/11 19:40:49 by alexlowen        ###   ########.fr       */
+/*   Updated: 2024/01/18 15:15:58 by alexlowen        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 
 int ft_putchar(int c);
 int ft_putstr(char *s);
+int ft_putnbr(int n);
 
 #endif

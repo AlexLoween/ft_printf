@@ -6,7 +6,7 @@
 /*   By: alexlowen <alexlowen@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:32:45 by alexlowen         #+#    #+#             */
-/*   Updated: 2024/01/11 19:45:23 by alexlowen        ###   ########.fr       */
+/*   Updated: 2024/01/18 15:39:13 by alexlowen        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int ft_conversion(char c, va_list argument)
     else if (c == 'p')
     ;    //TODO
     else if(c == 'i' || c == 'd')
-    ;    //TODO
+        return(ft_putnbr(va_arg(argument, int)));
     else if(c == 'x')
     ;    //TODO
     else if (c == 'X')
@@ -29,7 +29,7 @@ int ft_conversion(char c, va_list argument)
     else if (c == 'u')
     ;    //TODO
     else if (c == '%')
-       return (write(1,"%%",1));   
+        return (write(1,"%%",1));   
     return (0);      
 }
 
@@ -60,8 +60,6 @@ int ft_printf(char const *param, ...)
 
 int main()
 {
-    printf( "%s", "hola");
-    ft_printf("%s", "hola");
-
-
+    printf( "%d\n", 1033);
+    ft_printf("%d\n", 1033);
 }

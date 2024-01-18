@@ -6,7 +6,7 @@
 /*   By: alexlowen <alexlowen@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:36:57 by alexlowen         #+#    #+#             */
-/*   Updated: 2024/01/11 19:39:53 by alexlowen        ###   ########.fr       */
+/*   Updated: 2024/01/18 15:29:48 by alexlowen        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,25 @@ int ft_putstr(char *s)
     }
     return(len);
 }
-
+int ft_putnbr(int n)
+{
+    if(n == -2147483648)
+    {   
+        ft_putchar('-');                                                                                            
+        ft_putchar('2');
+        ft_putchar(147483648);
+    }
+    else if(n < 0)
+    {
+        ft_putchar('-');
+        ft_putchar(-n);
+    }
+    else if(n > 9)
+    {
+        ft_putnbr(n/10);
+        ft_putnbr(n%10);
+    }
+    else
+        ft_putchar(n + '0');
+return(n);
+}
