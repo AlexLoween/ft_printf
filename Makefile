@@ -3,7 +3,7 @@ SRC = main.c \
 OBJS = $(SRC:.c=.o)
 
 CC = gcc
-GFLAGS = -Wall -Wextra -Werror
+GFLAGS = -Wall -Wextra -Werror -g3
 RM_RF = rm -rf
 NAME = libftprintf.a
 

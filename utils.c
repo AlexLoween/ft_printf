@@ -11,48 +11,83 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int ft_putchar(int c)
+void ft_percent( int c, int *len)
 {
-    int len;
-
-    len = 0;
-    len += write(1,&c, 1);
-    return(len);
+    *len += write(1,"%%",1);
 }
-int ft_putstr(char *s)
+void ft_putchar(int c, int *len)
 {
-    int len;
-    int i;
+        *len += write(1,&c,1);
 
-    len = 0;
-    i = 0;
-    while(s[i])
-    {
-        len +=ft_putchar(s[i]);
-        i++;
-    }
-    return(len);
 }
-int ft_putnbr(int n)
+
+void	ft_putstr(char *str, int *len)
 {
-    if(n == -2147483648)
-    {   
-        ft_putchar('-');                                                                                            
-        ft_putchar('2');
-        ft_putchar(147483648);
-    }
-    else if(n < 0)
+	if (!str)
+		str = "(null)";
+	while (*str)
+		*len += write(1, str++, 1);
+}
+
+void	ft_putnbr(long long int nbr, int *len, int base)
+{
+	char	*hex;
+
+	hex = "0123456789abcdef";
+	if (nbr == INT_MIN)
+	{
+		*len += write(1, "-2147483648", 11);
+		return ;
+	}
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		*len += write(1, "-", 1);
+	}
+	if (nbr >= base)
+		ft_putnbr((nbr / base), len, base);
+	*len += write(1, &hex[nbr % base], 1);
+}
+ 
+void	ft_putnbrx(long long int nbr, int *len, int base)
+{
+	char	*hex;
+
+	hex = "0123456789ABCDEF";
+	if (nbr == INT_MIN)
+	{
+		*len += write(1, "-2147483648", 11);
+		return ;
+	}
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		*len += write(1, "-", 1);
+	}
+	if (nbr >= base)
+		ft_putnbrx((nbr / base), len, base);
+	*len += write(1, &hex[nbr % base], 1);
+}
+void	ft_putnbru(unsigned long int nbr, int *len, int base)
+{
+    char *base1;
+
+    base1 = "0123456789";
+	if (nbr >= base)
+		ft_putnbru((nbr / base), len, base);
+	*len += write(1, &base1[nbr % base], 1);
+}
+void	ft_pointer(unsigned long long nbr, int *len, int base)
+{
+	char	*hex;
+    
+    if (nbr == ULLONG_MAX)
     {
-        ft_putchar('-');
-        ft_putchar(-n);
+        *len += write(1,"ffffffffffffffff",16);
+        return ;
     }
-    else if(n > 9)
-    {
-        ft_putnbr(n/10);
-        ft_putnbr(n%10);
-    }
-    else
-        ft_putchar(n + '0');
-return(n);
+	hex = "0123456789abcdef";
+	if (nbr >= base)
+		ft_pointer((nbr / base), len, base);
+	*len += write(1, &hex[nbr % base], 1);
 }

@@ -16,9 +16,16 @@
 #include <stdio.h>  //para utilizar printf
 #include <unistd.h> // para utilizar el write
 #include <stdarg.h> //para las funciones variadicas
+#include <limits.h>
 
-int ft_putchar(int c);
-int ft_putstr(char *s);
-int ft_putnbr(int n);
+void	ft_putstr(char *str, int *len);
+void	ft_putnbr(long long int nbr, int *len, int base);
+void    ft_putchar(int c, int *len);
+void ft_percent( int c, int *len);
+void	ft_putnbrx(long long int nbr, int *len, int base);
+void	ft_putnbru(unsigned long int nbr, int *len, int base);
+void	ft_pointer(unsigned long long  nbr, int *len, int base);
 
 #endif
+
+

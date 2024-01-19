@@ -12,54 +12,66 @@
 
 #include "ft_printf.h"
 
-int ft_conversion(char c, va_list argument)
-{
-    if(c == 'c')
-        return(ft_putchar(va_arg(argument, int)));
-    else if(c == 's')
-        return(ft_putstr(va_arg(argument, char *)));
-    else if (c == 'p')
-    ;    //TODO
-    else if(c == 'i' || c == 'd')
-        return(ft_putnbr(va_arg(argument, int)));
-    else if(c == 'x')
-    ;    //TODO
-    else if (c == 'X')
-    ;    //TODO
-    else if (c == 'u')
-    ;    //TODO
-    else if (c == '%')
-        return (write(1,"%%",1));   
-    return (0);      
-}
+ void ft_format(char format, va_list args, int *len)
+ {
 
-int ft_printf(char const *param, ...)
-{
-    int len;
-    int p;
-    va_list argument;
-    
-    va_start(argument, param);
-    len = 0;
-    p = 0;
-    while(param[p])
-    {
-        if(param[p] == '%')
-        {
-            len += ft_conversion(param[p+1],argument);
-            p++;
-        }
-        else
-            len += write(1,&param[p], 1);
-        p++;     
-    }
-    va_end(argument);
-    return(len);
-}
+	if (format == 's')
+				ft_putstr(va_arg(args, char *), len);
+			else if (format == 'd' || format == 'i')
+				ft_putnbr((long long int)va_arg(args, int), len, 10);
+			else if (format == 'x')
+				ft_putnbr((long long int)va_arg(args, unsigned), len, 16);
+            else if (format == 'X')
+				ft_putnbrx((long long int)va_arg(args, unsigned), len, 16);
+            else if (format == 'u')
+				ft_putnbru((unsigned long int)va_arg(args, unsigned), len, 10);
+            else if (format == 'c')
+                ft_putchar(va_arg(args, int), len);
+            else if(format == '%')
+                ft_percent(va_arg(args, int), len);
+            else if (format == 'p')
+            {
+                ft_putstr("0x", len);
+                ft_pointer(va_arg(args, unsigned long long), len, 16);
+            }
+ }
 
 
-int main()
+
+int	ft_printf(const char *format, ...)
 {
-    printf( "%d\n", 1033);
-    ft_printf("%d\n", 1033);
+	va_list	args;
+	int	len;
+
+
+	len = 0;
+	va_start(args, format);
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			ft_format(*format,args, &len);
+			
+       	}    
+		else
+			len += write(1, format, 1);
+		format++;
+
+	}
+	va_end(args);
+	return (len);
 }
+
+
+/*int main()
+{
+    int original;
+    int mio;
+
+    mio = ft_printf("%p", (void *)-1);
+    original = printf("%p", (void *)-1);
+
+    printf("original %d\n mio %d\n",original , mio);
+ 
+}*/
