@@ -1,9 +1,11 @@
 SRC = main.c \
-		utils.c
+		utils1.c \
+		utils2.c
+
 OBJS = $(SRC:.c=.o)
 
 CC = gcc
-GFLAGS = -Wall -Wextra -Werror -g3
+GFLAGS = -Wall -Wextra -Werror
 RM_RF = rm -rf
 NAME = libftprintf.a
 
