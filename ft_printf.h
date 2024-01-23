@@ -6,7 +6,7 @@
 /*   By: alexlowen <alexlowen@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:33:41 by alexlowen         #+#    #+#             */
-/*   Updated: 2024/01/22 21:01:34 by ralanes          ###   ########.fr       */
+/*   Updated: 2024/01/23 21:49:14 by ralanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ void	ft_percent( int c, int *len);
 void	ft_putnbrx(long long int nbr, int *len, int base);
 void	ft_putnbru(unsigned long int nbr, int *len, int base);
 void	ft_pointer(unsigned long long nbr, int *len, int base);
+int		ft_printf(const char *format, ...);
+void	ft_format(char format, va_list args, int *len);
 
 #endif

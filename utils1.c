@@ -12,11 +12,6 @@
 
 #include "ft_printf.h"
 
-void	ft_percent(int c, int *len)
-{
-	*len += write(1, "%%", 1);
-}
-
 void	ft_putchar(int c, int *len)
 {
 	*len += write(1, &c, 1);
