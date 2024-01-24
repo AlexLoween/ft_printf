@@ -32,7 +32,7 @@ void	ft_putnbrx(long long int nbr, int *len, int base)
 	*len += write(1, &hex[nbr % base], 1);
 }
 
-void	ft_putnbru(unsigned long int nbr, int *len, int base)
+void	ft_putnbru(unsigned long int nbr, int *len, unsigned int base)
 {
 	char	*base1;
 
@@ -42,7 +42,7 @@ void	ft_putnbru(unsigned long int nbr, int *len, int base)
 	*len += write(1, &base1[nbr % base], 1);
 }
 
-void	ft_pointer(unsigned long long nbr, int *len, int base)
+void	ft_pointer(unsigned long int nbr, int *len, unsigned int base)
 {
 	char	*hex;
 

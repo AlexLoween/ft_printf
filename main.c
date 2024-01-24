@@ -31,8 +31,12 @@ void	ft_format(char format, va_list args, int *len)
 	else if (format == 'p')
 	{
 		ft_putstr("0x", len);
-		ft_pointer(va_arg(args, unsigned long long), len, 16);
+		ft_pointer(va_arg(args, size_t), len, 16);
 	}
+	else if (!(format == 's' && format == 'c' && format == 'X'
+			&& format == 'x' && format == 'u' && format == 'p'
+			&& format == 'd' && format == 'i'))
+		*len += write(1, &format, 1);
 	else
 		*len = 0;
 }
@@ -59,13 +63,13 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-/* int main()
+/*   int main()
 {
 	int original;
 	int mio;
 	
-	mio = ft_printf(" %c\n", '0' - 256);
-	original = printf(" %c\n", '0' - 256);
+	mio = ft_printf("%x %%hola%p\n", -42, NULL);
+	original = printf("%x %%hola%p\n", -42, NULL);
 	
-	printf("original %d\n mio %d\n",original , mio);
-} */
+	printf("original \n%d\n mio %d\n",original , mio);
+}  */
