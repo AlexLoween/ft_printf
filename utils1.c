@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexlowen <alexlowen@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ralanes <ralanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:36:57 by alexlowen         #+#    #+#             */
-/*   Updated: 2024/01/22 20:49:05 by ralanes          ###   ########.fr       */
+/*   Updated: 2024/03/05 20:07:13 by ralanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_putchar(int c, int *len)
 void	ft_putstr(char *str, int *len)
 {
 	if (!str)
-		str = "(null)";
+		str = "(nil)";
 	while (*str)
 		*len += write(1, str++, 1);
 }

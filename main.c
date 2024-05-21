@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexlowen <alexlowen@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ralanes <ralanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:32:45 by alexlowen         #+#    #+#             */
-/*   Updated: 2024/01/22 20:57:08 by ralanes          ###   ########.fr       */
+/*   Updated: 2024/03/05 20:04:47 by ralanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,16 @@ void	ft_format(char format, va_list args, int *len)
 		*len += write(1, "%%", 1);
 	else if (format == 'p')
 	{
+		void *ptr = va_arg(args, void *);
+		if (ptr == NULL)
+		{
+			ft_putstr("(nil)", len);
+		}
+		else
+		{
 		ft_putstr("0x", len);
 		ft_pointer(va_arg(args, size_t), len, 16);
+		}
 	}
 	else if (!(format == 's' && format == 'c' && format == 'X'
 			&& format == 'x' && format == 'u' && format == 'p'
@@ -63,13 +71,13 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-/*   int main()
+/*int main()
 {
-	int original;
 	int mio;
+	int original;
 	
 	mio = ft_printf("%x %%hola%p\n", -42, NULL);
 	original = printf("%x %%hola%p\n", -42, NULL);
 	
-	printf("original \n%d\n mio %d\n",original , mio);
-}  */
+	printf("mio %d\noriginal %d\n",mio ,original);
+}*/
