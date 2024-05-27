@@ -22,8 +22,7 @@ $(NAME): $(OBJS)
 	@echo "$(COLOR_YELLOW)¡Ya lo tenemos ALUCINA! !$(COLOR_RESET)"
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
-
+	$(CC) $(CFLAGS) -c  $@ $^
 
 clean:
 	@echo "$(COLOR_YELLOW)Eliminando cositas...$(COLOR_RESET)"

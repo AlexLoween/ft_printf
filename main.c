@@ -6,13 +6,13 @@
 /*   By: ralanes <ralanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:32:45 by alexlowen         #+#    #+#             */
-/*   Updated: 2024/03/05 20:04:47 by ralanes          ###   ########.fr       */
+/*   Updated: 2024/05/27 20:33:44 by ralanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_format(char format, va_list args, int *len)
+void	ft_handle_format(char format, va_list args, int *len)
 {
 	if (format == 's')
 		ft_putstr(va_arg(args, char *), len);
@@ -25,28 +25,26 @@ void	ft_format(char format, va_list args, int *len)
 	else if (format == 'u')
 		ft_putnbru(va_arg(args, unsigned), len, 10);
 	else if (format == 'c')
-		ft_putchar(va_arg(args, int), len);
+		ft_putchar((char)va_arg(args, int), len);
 	else if (format == '%')
 		*len += write(1, "%%", 1);
-	else if (format == 'p')
-	{
-		void *ptr = va_arg(args, void *);
-		if (ptr == NULL)
-		{
-			ft_putstr("(nil)", len);
-		}
-		else
-		{
-		ft_putstr("0x", len);
-		ft_pointer(va_arg(args, size_t), len, 16);
-		}
-	}
-	else if (!(format == 's' && format == 'c' && format == 'X'
-			&& format == 'x' && format == 'u' && format == 'p'
-			&& format == 'd' && format == 'i'))
-		*len += write(1, &format, 1);
 	else
-		*len = 0;
+		*len += write(1, &format, 1);
+}
+
+void ft_format(char format, va_list args, int *len) {
+    if (format == 'p')
+	{
+        void *ptr = va_arg(args, void *);
+        if (ptr == NULL)
+			ft_putstr("(nil)", len);
+	else
+	{
+		ft_putstr("0x", len);
+		ft_pointer((size_t)ptr, len, 16);
+	}
+	else
+		ft_handle_format(format, args, len);
 }
 
 int	ft_printf(const char *format, ...)
