@@ -32,16 +32,20 @@ void	ft_handle_format(char format, va_list args, int *len)
 		*len += write(1, &format, 1);
 }
 
-void ft_format(char format, va_list args, int *len) {
-    if (format == 'p')
+void	ft_format(char format, va_list args, int *len)
+{
+	if (format == 'p')
 	{
-        void *ptr = va_arg(args, void *);
-        if (ptr == NULL)
+        void *ptr = NULL;
+
+		*ptr = va_arg(args, void *);
+		if (ptr == NULL)
 			ft_putstr("(nil)", len);
-	else
-	{
-		ft_putstr("0x", len);
-		ft_pointer((size_t)ptr, len, 16);
+		else
+		{
+			ft_putstr("0x", len);
+			ft_pointer((size_t)ptr, len, 16);
+		}
 	}
 	else
 		ft_handle_format(format, args, len);
@@ -74,8 +78,8 @@ int	ft_printf(const char *format, ...)
 	int mio;
 	int original;
 	
-	mio = ft_printf("%x %%hola%p\n", -42, NULL);
-	original = printf("%x %%hola%p\n", -42, NULL);
+	mio = ft_printf("%x %%hola %p\n", -42, NULL);
+	original = printf("%x %%hola %p\n", -42, NULL);
 	
 	printf("mio %d\noriginal %d\n",mio ,original);
 }*/
