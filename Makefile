@@ -7,7 +7,7 @@ SRC = main.c \
     utils1.c \
     utils2.c
 
-OBJS = $(SRC:.c=.o)
+OBJS = $(SRC:.c = .o)
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
