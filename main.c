@@ -38,7 +38,7 @@ void	ft_format(char format, va_list args, int *len)
 
 	if (format == 'p')
 	{
-		pt = va_arg(args, void *);
+		ptr = va_arg(args, void *);
 		if (ptr == NULL)
 			ft_putstr("(nil)", len);
 		else
@@ -73,7 +73,7 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-int main()
+/*int main()
 {
 	int mio;
 	int original;
@@ -82,4 +82,4 @@ int main()
 	original = printf("%x %%hola %p\n", -42, NULL);
 	
 	printf("mio %d\noriginal %d\n",mio ,original);
-}
+}*/

@@ -7,22 +7,22 @@ SRC = main.c \
     utils1.c \
     utils2.c
 
-OBJS = $(SRC:.c = .o)
+OBJS = $(SRC:.c=.o)
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM_RF = rm -rf
-NAME = libftprintf.a
+EXEC = a.out
 
-all: $(NAME)
+all: $(EXEC)
 
-$(NAME): $(OBJS)
+$(EXEC): $(OBJS)
 	@echo "$(COLOR_GREEN)Compilacion en 3, 2, 1 ...$(COLOR_RESET)"
-	@ar rcs $(NAME) $(OBJS)
-	@echo "$(COLOR_YELLOW)¡Ya lo tenemos ALUCINA! !$(COLOR_RESET)"
+	@$(CC) $(OBJS) -o $(EXEC)
+	@echo "$(COLOR_YELLOW)¡Ya lo tenemos ALUCINA!$(COLOR_RESET)"
 
-%.o : %.c
-	$(CC) $(CFLAGS) -c  $@ $^
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@echo "$(COLOR_YELLOW)Eliminando cositas...$(COLOR_RESET)"
@@ -30,7 +30,7 @@ clean:
 
 fclean: clean
 	@echo "$(COLOR_AZUL)Borrando todas las cositas...$(COLOR_RESET)"
-	@$(RM_RF) $(NAME) $(OBJS)
+	@$(RM_RF) $(EXEC)
 
 re: fclean all
 

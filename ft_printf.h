@@ -25,6 +25,7 @@ void	ft_putnbrx(long long int nbr, int *len, int base);
 void	ft_putnbru(unsigned long int nbr, int *len, unsigned int base);
 void	ft_pointer(unsigned long int nbr, int *len, unsigned int base);
 int		ft_printf(const char *format, ...);
+void	ft_handle_format(char format, va_list args, int *len);
 void	ft_format(char format, va_list args, int *len);
 
 #endif
