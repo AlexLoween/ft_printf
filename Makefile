@@ -12,17 +12,17 @@ OBJS = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM_RF = rm -rf
-EXEC = a.out
+EJEC = libftprintf.a
 
-all: $(EXEC)
+all: $(EJEC)
 
-$(EXEC): $(OBJS)
+$(EJEC): $(OBJS)
 	@echo "$(COLOR_GREEN)Compilacion en 3, 2, 1 ...$(COLOR_RESET)"
-	@$(CC) $(OBJS) -o $(EXEC)
+	@$(CC) $(OBJS) -o $(EJEC)
 	@echo "$(COLOR_YELLOW)¡Ya lo tenemos ALUCINA!$(COLOR_RESET)"
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean:
 	@echo "$(COLOR_YELLOW)Eliminando cositas...$(COLOR_RESET)"
@@ -30,7 +30,7 @@ clean:
 
 fclean: clean
 	@echo "$(COLOR_AZUL)Borrando todas las cositas...$(COLOR_RESET)"
-	@$(RM_RF) $(EXEC)
+	@$(RM_RF) $(EJEC)
 
 re: fclean all
 
