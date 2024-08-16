@@ -1,37 +1,23 @@
-COLOR_RESET = \033[0m
-COLOR_GREEN = \033[32m
-COLOR_YELLOW = \033[33m
-COLOR_AZUL = \033[34m
+NAME= libftprintf.a
 
-SRC = main.c \
+CC= gcc
+CFLAGS= -Wall -Wextra -Werror
+RM= rm -f
+
+SRCS = main.c \
     utils1.c \
     utils2.c
+								
+OBJS = $(SRCS:.c=.o)
 
-OBJS = $(SRC:.c=.o)
+$(NAME) : $(OBJS)
+	@ar crs $(NAME) $(OBJS)
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-RM_RF = rm -rf
-EJEC = libftprintf.a
-
-all: $(EJEC)
-
-$(EJEC): $(OBJS)
-	@echo "$(COLOR_GREEN)Compilacion en 3, 2, 1 ...$(COLOR_RESET)"
-	@$(CC) $(OBJS) -o $(EJEC)
-	@echo "$(COLOR_YELLOW)¡Ya lo tenemos ALUCINA!$(COLOR_RESET)"
-
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@ 
+all: $(NAME)
 
 clean:
-	@echo "$(COLOR_YELLOW)Eliminando cositas...$(COLOR_RESET)"
-	@$(RM_RF) $(OBJS)
-
+	@$(RM) $(OBJS)
 fclean: clean
-	@echo "$(COLOR_AZUL)Borrando todas las cositas...$(COLOR_RESET)"
-	@$(RM_RF) $(EJEC)
-
+	@rm -f $(NAME)
 re: fclean all
-
-.PHONY: all clean fclean re
+.PHONY: all re clean fclean
